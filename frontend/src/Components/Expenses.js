@@ -1,28 +1,30 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useGlobalContext } from '../../context/globalContext';
-import { InnerLayout } from '../../styles/Layouts';
-import Form from '../Form/Form';
-import IncomeItem from '../IncomeItem/IncomeItem';
+import { useGlobalContext } from '../context/globalContext';
+import { InnerLayout } from '../styles/Layouts';
+import Form from './Form';
+import IncomeItem from './IncomeItem';
+import ExpenseForm from './ExpenseForm';
 
-function Income() {
-    const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
+function Expenses() {
+    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
 
     useEffect(() =>{
-        getIncomes()
+        getExpenses()
     }, [])
     return (
-        <IncomeStyled>
+        <ExpenseStyled>
             <InnerLayout>
-                <h1>Incomes</h1>
-                <h2 className="total-income">Total Income: <span>${totalIncome()}</span></h2>
+                <h1>Expenses</h1>
+                <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span></h2>
                 <div className="income-content">
                     <div className="form-container">
-                        <Form />
+                        <ExpenseForm />
                     </div>
                     <div className="incomes">
-                        {incomes.map((income) => {
+                        {expenses.map((income) => {
                             const {_id, title, amount, date, category, description, type} = income;
+                            console.log(income)
                             return <IncomeItem
                                 key={_id}
                                 id={_id} 
@@ -33,17 +35,17 @@ function Income() {
                                 type={type}
                                 category={category} 
                                 indicatorColor="var(--color-green)"
-                                deleteItem={deleteIncome}
+                                deleteItem={deleteExpense}
                             />
                         })}
                     </div>
                 </div>
             </InnerLayout>
-        </IncomeStyled>
+        </ExpenseStyled>
     )
 }
 
-const IncomeStyled = styled.div`
+const ExpenseStyled = styled.div`
     display: flex;
     overflow: auto;
     .total-income{
@@ -73,4 +75,4 @@ const IncomeStyled = styled.div`
     }
 `;
 
-export default Income
+export default Expenses
