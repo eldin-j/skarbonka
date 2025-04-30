@@ -44,7 +44,7 @@ function ExpenseForm() {
                     type="text" 
                     value={title}
                     name={'title'} 
-                    placeholder="Expense Title"
+                    placeholder="Title"
                     onChange={handleInput('title')}
                 />
             </div>
@@ -52,14 +52,14 @@ function ExpenseForm() {
                 <input value={amount}  
                     type="text" 
                     name={'amount'} 
-                    placeholder={'Expense Amount'}
+                    placeholder={'Amount'}
                     onChange={handleInput('amount')} 
                 />
             </div>
             <div className="input-control">
                 <DatePicker 
                     id='date'
-                    placeholderText='Enter A Date'
+                    placeholderText='Date'
                     selected={date}
                     dateFormat="dd/MM/yyyy"
                     onChange={(date) => {
@@ -69,7 +69,7 @@ function ExpenseForm() {
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value="" disabled >Select Option</option>
+                    <option value="" disabled >Category</option>
                     <option value="education">Education</option>
                     <option value="groceries">Groceries</option>
                     <option value="health">Health</option>
@@ -81,7 +81,7 @@ function ExpenseForm() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" value={description} placeholder='Description' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
                 <Button 
@@ -126,8 +126,9 @@ const ExpenseFormStyled = styled.form`
 
     .selects{
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start; 
         select{
+            width: 100%; 
             color: rgba(34, 34, 96, 0.4);
             &:focus, &:active{
                 color: rgba(34, 34, 96, 1);

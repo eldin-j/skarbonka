@@ -44,7 +44,7 @@ function Form() {
                     type="text" 
                     value={title}
                     name={'title'} 
-                    placeholder="Income Title"
+                    placeholder="Title"
                     onChange={handleInput('title')}
                 />
             </div>
@@ -52,14 +52,14 @@ function Form() {
                 <input value={amount}  
                     type="text" 
                     name={'amount'} 
-                    placeholder={'Income Amount'}
+                    placeholder={'Amount'}
                     onChange={handleInput('amount')} 
                 />
             </div>
             <div className="input-control">
                 <DatePicker 
                     id='date'
-                    placeholderText='Enter A Date'
+                    placeholderText='Date'
                     selected={date}
                     dateFormat="dd/MM/yyyy"
                     onChange={(date) => {
@@ -69,7 +69,7 @@ function Form() {
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
+                    <option value=""  disabled >Category</option>
                     <option value="Income">Income</option>
                     <option value="freelancing">Freelancing</option>
                     <option value="investments">Investiments</option>
@@ -81,7 +81,7 @@ function Form() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" value={description} placeholder='Description' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
                 <Button 
@@ -126,8 +126,9 @@ const FormStyled = styled.form`
 
     .selects{
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         select{
+            width: 100%;
             color: rgba(34, 34, 96, 0.4);
             &:focus, &:active{
                 color: rgba(34, 34, 96, 1);
