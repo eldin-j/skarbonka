@@ -44,8 +44,8 @@ function Dashboard() {
                     </div>
                     <div className="history-con">
                         <History />
-                        <h2 className="salary-title">Min <span>Salary</span>Max</h2>
-                        <div className="salary-item">
+                        <h2 className="Income-title">Min <span>Income</span>Max</h2>
+                        <div className="Income-item">
                             <p>
                                 ${Math.min(...incomes.map(item => item.amount))}
                             </p>
@@ -53,8 +53,8 @@ function Dashboard() {
                                 ${Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
-                        <h2 className="salary-title">Min <span>Expense</span>Max</h2>
-                        <div className="salary-item">
+                        <h2 className="Income-title">Min <span>Expense</span>Max</h2>
+                        <div className="Income-item">
                             <p>
                                 ${Math.min(...expenses.map(item => item.amount))}
                             </p>
@@ -120,13 +120,13 @@ const DashboardStyled = styled.div`
                 align-items: center;
                 justify-content: space-between;
             }
-            .salary-title{
+            .Income-title{
                 font-size: 1.2rem;
                 span{
                     font-size: 1.8rem;
                 }
             }
-            .salary-item{
+            .Income-item{
                 background: #FCF6F9;
                 border: 2px solid #FFFFFF;
                 box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);

@@ -9,10 +9,9 @@ function Navigation({active, setActive}) {
     return (
         <NavStyled>
             <div className="user-con">
-                <img src={avatar} alt="" />
+                <img src={"https://ui-avatars.com/api/?name=User&background=random&color=ffff"} alt="" />
                 <div className="text">
-                    <h2>Mike</h2>
-                    <p>Your Money</p>
+                    <h2>User</h2>
                 </div>
             </div>
             <ul className="menu-items">

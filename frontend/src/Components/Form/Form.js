@@ -44,7 +44,7 @@ function Form() {
                     type="text" 
                     value={title}
                     name={'title'} 
-                    placeholder="Salary Title"
+                    placeholder="Income Title"
                     onChange={handleInput('title')}
                 />
             </div>
@@ -52,7 +52,7 @@ function Form() {
                 <input value={amount}  
                     type="text" 
                     name={'amount'} 
-                    placeholder={'Salary Amount'}
+                    placeholder={'Income Amount'}
                     onChange={handleInput('amount')} 
                 />
             </div>
@@ -70,7 +70,7 @@ function Form() {
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
                     <option value=""  disabled >Select Option</option>
-                    <option value="salary">Salary</option>
+                    <option value="Income">Income</option>
                     <option value="freelancing">Freelancing</option>
                     <option value="investments">Investiments</option>
                     <option value="stocks">Stocks</option>

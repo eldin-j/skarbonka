@@ -18,7 +18,7 @@ function IncomeItem({
 
     const categoryIcon = () =>{
         switch(category) {
-            case 'salary':
+            case 'Income':
                 return money;
             case 'freelancing':
                 return freelance
