@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         --color-green: #42AD00;
         --color-grey: #aaa;
         --color-accent: #F56692;
-        --color-delete: #ef0000;
+        --color-red: #ef0000;
     }
 
     body {

@@ -4,6 +4,7 @@ import bg from './img/bg.png'
 import {MainLayout} from './styles/Layouts'
 import Navigation from './Components/Navigation'
 import Dashboard from './Components/Dashboard';
+import Transactions from './Components/Transactions';
 import Income from './Components/Income'
 import Expenses from './Components/Expenses';
 import { useGlobalContext } from './context/globalContext';
@@ -19,7 +20,7 @@ function App() {
       case 1:
         return <Dashboard />
       case 2:
-        return <Dashboard />
+        return <Transactions />
       case 3:
         return <Income />
       case 4: 
