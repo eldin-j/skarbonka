@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../context/globalContext';
 import History from './History';
-import { InnerLayout } from '../styles/Layouts';
 import { dollar } from '../utils/Icons';
 import Chart from './Chart';
+import { InnerLayout } from '../styles/Layouts';
 
 function Dashboard() {
-    const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
+    const {totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses, incomes, expenses, formatMoney} = useGlobalContext()
 
     useEffect(() => {
         getIncomes()
@@ -47,19 +47,19 @@ function Dashboard() {
                         <h2 className="Income-title">Min <span>Income</span>Max</h2>
                         <div className="Income-item">
                             <p>
-                                ${Math.min(...incomes.map(item => item.amount))}
+                                ${incomes.length > 0 ? formatMoney(Math.min(...incomes.map(item => item.amount))) : 0}
                             </p>
                             <p>
-                                ${Math.max(...incomes.map(item => item.amount))}
+                                ${incomes.length > 0 ? formatMoney(Math.max(...incomes.map(item => item.amount))) : 0}
                             </p>
                         </div>
                         <h2 className="Income-title">Min <span>Expense</span>Max</h2>
                         <div className="Income-item">
                             <p>
-                                ${Math.min(...expenses.map(item => item.amount))}
+                                ${expenses.length > 0 ? formatMoney(Math.min(...expenses.map(item => item.amount))) : 0}
                             </p>
                             <p>
-                                ${Math.max(...expenses.map(item => item.amount))}
+                                ${expenses.length > 0 ? formatMoney(Math.max(...expenses.map(item => item.amount))) : 0}
                             </p>
                         </div>
                     </div>

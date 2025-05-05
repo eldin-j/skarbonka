@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useGlobalContext } from '../context/globalContext';
 
 function History() {
-    const {transactionHistory} = useGlobalContext()
+    const {transactionHistory, formatMoney} = useGlobalContext()
 
     const [...history] = transactionHistory()
 
@@ -24,7 +24,9 @@ function History() {
                             color: type === 'expense' ? 'red' : 'var(--color-green)'
                         }}>
                             {
-                                type === 'expense' ? `-${amount <= 0 ? 0 : amount}` : `+${amount <= 0 ? 0: amount}`
+                                type === 'expense' ?
+                                    `-${amount <= 0 ? 0 : formatMoney(amount)}` :
+                                    `+${amount <= 0 ? 0 : formatMoney(amount)}`
                             }
                         </p>
                     </div>

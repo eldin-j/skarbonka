@@ -13,6 +13,11 @@ export const GlobalProvider = ({children}) => {
     const [expenses, setExpenses] = useState([])
     const [error, setError] = useState(null)
 
+    // Format money with spaces
+    const formatMoney = (value) => {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
     //calculate incomes
     const addIncome = async (income) => {
         const response = await axios.post(`${BASE_URL}add-income`, income)
@@ -39,7 +44,7 @@ export const GlobalProvider = ({children}) => {
             totalIncome = totalIncome + income.amount
         })
 
-        return totalIncome;
+        return formatMoney(totalIncome);
     }
 
 
@@ -69,12 +74,15 @@ export const GlobalProvider = ({children}) => {
             totalIncome = totalIncome + income.amount
         })
 
-        return totalIncome;
+        return formatMoney(totalIncome);
     }
 
 
     const totalBalance = () => {
-        return totalIncome() - totalExpenses()
+        // Parse the formatted strings back to numbers for calculation
+        const income = parseFloat(totalIncome().replace(/\s/g, ''));
+        const expense = parseFloat(totalExpenses().replace(/\s/g, ''));
+        return formatMoney(income - expense);
     }
 
     const transactionHistory = () => {
@@ -102,7 +110,8 @@ export const GlobalProvider = ({children}) => {
             totalBalance,
             transactionHistory,
             error,
-            setError
+            setError,
+            formatMoney
         }}>
             {children}
         </GlobalContext.Provider>

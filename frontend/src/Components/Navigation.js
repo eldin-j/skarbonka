@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { signout } from '../utils/Icons'
 import { menuItems } from '../utils/menuItems'
+import { useGlobalContext } from '../context/globalContext';
 
 function Navigation({active, setActive}) {
-    
+
+    const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
+
     return (
         <NavStyled>
             <div className="user-con">
                 <img src={"https://ui-avatars.com/api/?name=User&background=random&color=ffff"} alt="" />
                 <div className="text">
                     <h2>User</h2>
+                    <p>Balance: ${totalBalance()}</p>
                 </div>
             </div>
             <ul className="menu-items">
