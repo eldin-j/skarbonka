@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../context/globalContext';
-import History from './History';
+import History from '../components/History';
 import { dollar } from '../utils/Icons';
-import Chart from './Chart';
+import Chart from '../components/Chart';
 import { InnerLayout } from '../styles/Layouts';
 
-function Dashboard() {
+function Statistics() {
     const {totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses, incomes, expenses, formatMoney} = useGlobalContext()
 
     useEffect(() => {
@@ -15,15 +15,15 @@ function Dashboard() {
     }, [])
 
     return (
-        <DashboardStyled>
+        <StatisticsStyled>
             <InnerLayout>
-                <h1>All Transactions</h1>
-                <div className="stats-con">
+                <h1>Statistics</h1>
+                <div className="Statistics-con">
                     <div className="chart-con">
                         <Chart />
                         <div className="amount-con">
                             <div className="income">
-                                <h2>Total Income</h2>
+                                <h2>Total Incomes</h2>
                                 <p>
                                     {dollar} {totalIncome()}
                                 </p>
@@ -44,7 +44,7 @@ function Dashboard() {
                     </div>
                     <div className="history-con">
                         <History />
-                        <h2 className="Income-title">Min <span>Income</span>Max</h2>
+                        <h2 className="Income-title">Min <span>Incomes</span>Max</h2>
                         <div className="Income-item">
                             <p>
                                 ${incomes.length > 0 ? formatMoney(Math.min(...incomes.map(item => item.amount))) : 0}
@@ -65,12 +65,16 @@ function Dashboard() {
                     </div>
                 </div>
             </InnerLayout>
-        </DashboardStyled>
+        </StatisticsStyled>
     )
 }
 
-const DashboardStyled = styled.div`
-    .stats-con{
+const StatisticsStyled = styled.div`
+    h1 {
+        margin-bottom: 1rem;
+    }
+    
+    .Statistics-con{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 2rem;
@@ -120,13 +124,13 @@ const DashboardStyled = styled.div`
                 align-items: center;
                 justify-content: space-between;
             }
-            .Income-title{
+            .Incomes-title{
                 font-size: 1.2rem;
                 span{
                     font-size: 1.8rem;
                 }
             }
-            .Income-item{
+            .Incomes-item{
                 background: #FCF6F9;
                 border: 2px solid #FFFFFF;
                 box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -144,4 +148,4 @@ const DashboardStyled = styled.div`
     }
 `;
 
-export default Dashboard
+export default Statistics

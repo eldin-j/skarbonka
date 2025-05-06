@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
         --primary-color3: 'color: rgba(34, 34, 96, .4)';
         --color-green: #42AD00;
         --color-grey: #aaa;
-        --color-accent: #F56692;
+        --color-accent: #6698f5;
         --color-red: #ef0000;
     }
 
@@ -27,27 +27,5 @@ export const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3, h4, h5, h6 {
         color: var(--primary-color);
-    }
-
-    .error {
-        color: red;
-        animation: shake 0.5s ease-in-out;
-        @keyframes shake {
-            0% {
-                transform: translateX(0);
-            }
-            25% {
-                transform: translateX(10px);
-            }
-            50% {
-                transform: translateX(-10px);
-            }
-            75% {
-                transform: translateX(10px);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
     }
 `;

@@ -70,7 +70,7 @@ function Form() {
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
                     <option value=""  disabled >Category</option>
-                    <option value="Income">Income</option>
+                    <option value="Incomes">Incomes</option>
                     <option value="freelancing">Freelancing</option>
                     <option value="investments">Investiments</option>
                     <option value="stocks">Stocks</option>
@@ -85,7 +85,7 @@ function Form() {
             </div>
             <div className="submit-btn">
                 <Button 
-                    name={'Add Income'}
+                    name={'Add Incomes'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
                     bRad={'30px'}
@@ -139,6 +139,7 @@ const FormStyled = styled.form`
     .submit-btn{
         button{
             box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease;
             &:hover{
                 background: var(--color-green) !important;
             }

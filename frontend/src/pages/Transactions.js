@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../context/globalContext';
-import History from './History';
+import History from '../components/History';
 import { dollar } from '../utils/Icons';
 import { InnerLayout } from '../styles/Layouts';
 
@@ -48,6 +48,10 @@ function Transactions() {
 }
 
 const TransactionsStyled = styled.div`
+    h1 {
+        margin-bottom: 1rem;
+    }
+    
     .totals-con {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

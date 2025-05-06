@@ -2,11 +2,11 @@ import React, {useState, useMemo} from 'react'
 import styled from "styled-components";
 import bg from './img/bg.png'
 import {MainLayout} from './styles/Layouts'
-import Navigation from './Components/Navigation'
-import Dashboard from './Components/Dashboard';
-import Transactions from './Components/Transactions';
-import Income from './Components/Income'
-import Expenses from './Components/Expenses';
+import Navigation from './components/Navigation'
+import Statistics from './pages/Statistics';
+import Transactions from './pages/Transactions';
+import Incomes from './pages/Incomes'
+import Expenses from './pages/Expenses';
 import { useGlobalContext } from './context/globalContext';
 
 function App() {
@@ -18,15 +18,15 @@ function App() {
   const displayData = () => {
     switch(active){
       case 1:
-        return <Dashboard />
+        return <Statistics />
       case 2:
         return <Transactions />
       case 3:
-        return <Income />
+        return <Incomes />
       case 4: 
         return <Expenses />
       default: 
-        return <Dashboard />
+        return <Statistics />
     }
   }
 
