@@ -1,5 +1,5 @@
 import React from 'react'
-import {Chart as ChartJs, 
+import {Chart as ChartJs,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -60,10 +60,14 @@ function TimeChart() {
         ]
     }
 
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false
+    }
 
     return (
-        <ChartStyled >
-            <Line data={data} />
+        <ChartStyled>
+            <Line data={data} options={options} />
         </ChartStyled>
     )
 }
@@ -75,6 +79,7 @@ const ChartStyled = styled.div`
     padding: 1rem;
     border-radius: 20px;
     height: 100%;
+    width: 100%;
 `;
 
 export default TimeChart
