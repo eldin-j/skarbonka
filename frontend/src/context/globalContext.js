@@ -29,8 +29,10 @@ export const GlobalProvider = ({children}) => {
 
     const getIncomes = async () => {
         const response = await axios.get(`${BASE_URL}get-incomes`)
-        setIncomes(response.data)
-        console.log(response.data)
+        const sortedIncomes = response.data.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
+        })
+        setIncomes(sortedIncomes)
     }
 
     const deleteIncome = async (id) => {
@@ -48,7 +50,7 @@ export const GlobalProvider = ({children}) => {
     }
 
 
-    //calculate incomes
+    //calculate expenses
     const addExpense = async (income) => {
         const response = await axios.post(`${BASE_URL}add-expense`, income)
             .catch((err) =>{
@@ -59,8 +61,10 @@ export const GlobalProvider = ({children}) => {
 
     const getExpenses = async () => {
         const response = await axios.get(`${BASE_URL}get-expenses`)
-        setExpenses(response.data)
-        console.log(response.data)
+        const sortedExpenses = response.data.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
+        })
+        setExpenses(sortedExpenses)
     }
 
     const deleteExpense = async (id) => {
