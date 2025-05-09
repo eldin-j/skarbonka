@@ -5,7 +5,7 @@ import { useGlobalContext } from '../context/globalContext';
 function History() {
     const {transactionHistory, formatMoney} = useGlobalContext()
 
-    const [...history] = transactionHistory()
+    const [...history] = transactionHistory(5)
 
     return (
         <HistoryStyled>

@@ -89,13 +89,13 @@ export const GlobalProvider = ({children}) => {
         return formatMoney(income - expense);
     }
 
-    const transactionHistory = () => {
+    const transactionHistory = (x) => {
         const history = [...incomes, ...expenses]
         history.sort((a, b) => {
             return new Date(b.createdAt) - new Date(a.createdAt)
         })
 
-        return history.slice(0, 3)
+        return history.slice(0, x)
     }
 
     const getMostFrequentCategory = (transactions) => {
