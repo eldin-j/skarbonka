@@ -98,6 +98,14 @@ export const GlobalProvider = ({children}) => {
         return history.slice(0, 3)
     }
 
+    const getMostFrequentCategory = (transactions) => {
+        const categories = {};
+        transactions.forEach(t => {
+            categories[t.category] = (categories[t.category] || 0) + 1;
+        });
+        return Object.entries(categories).sort((a, b) => b[1] - a[1])[0][0];
+    };
+
 
     return (
         <GlobalContext.Provider value={{
@@ -113,6 +121,7 @@ export const GlobalProvider = ({children}) => {
             totalExpenses,
             totalBalance,
             transactionHistory,
+            getMostFrequentCategory,
             error,
             setError,
             formatMoney

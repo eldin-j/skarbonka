@@ -6,7 +6,7 @@ import TimeChart from '../components/TimeChart';
 import CategoryChart from '../components/CategoryChart';
 
 function Statistics() {
-    const {totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses, incomes, expenses, formatMoney} = useGlobalContext()
+    const {totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses, incomes, expenses, formatMoney, getMostFrequentCategory} = useGlobalContext()
 
     useEffect(() => {
         getIncomes()
@@ -29,25 +29,72 @@ function Statistics() {
                     </div>
                 </div>
                 <div className="min-max-con">
+                    {/* Monthly Summary */}
                     <div className="stats-item">
-                        <h2>Income <span>Min/Max</span></h2>
-                        <div className="values">
+                        <div className="values-inline">
+                            <h2>This Month's Total:</h2>
+                            <p>${formatMoney(totalBalance())}</p>
+                        </div>
+                    </div>
+
+                    {/* This Month's Transaction Count */}
+                    <div className="stats-item">
+                        <div className="values-inline">
+                            <h2>This Month's Transaction Count:</h2>
+                            <p>{incomes.length + expenses.length}</p>
+                        </div>
+                    </div>
+
+                    {/* Income and Expense Average */}
+                    <div className="stats-item">
+                        <div className="values-inline">
+                            <h2>Income Average:</h2>
                             <p>
-                                ${incomes.length > 0 ? formatMoney(Math.min(...incomes.map(item => item.amount))) : 0}
-                            </p>
-                            <p>
-                                ${incomes.length > 0 ? formatMoney(Math.max(...incomes.map(item => item.amount))) : 0}
+                                ${incomes.length > 0
+                                ? formatMoney(incomes.reduce((acc, curr) => acc + curr.amount, 0) / incomes.length)
+                                : 0}
                             </p>
                         </div>
                     </div>
                     <div className="stats-item">
-                        <h2>Expense <span>Min/Max</span></h2>
-                        <div className="values">
+                        <div className="values-inline">
+                            <h2>Expense Average:</h2>
                             <p>
-                                ${expenses.length > 0 ? formatMoney(Math.min(...expenses.map(item => item.amount))) : 0}
+                                ${expenses.length > 0
+                                ? formatMoney(expenses.reduce((acc, curr) => acc + curr.amount, 0) / expenses.length)
+                                : 0}
                             </p>
+                        </div>
+                    </div>
+
+                    {/* Savings Rate (represents what percentage of the total income is not being spent.) */}
+                    <div className="stats-item">
+                        <div className="values-inline">
+                            <h2>Savings Rate:</h2>
                             <p>
-                                ${expenses.length > 0 ? formatMoney(Math.max(...expenses.map(item => item.amount))) : 0}
+                                {(() => {
+                                    const income = parseFloat(totalIncome()) || 0;
+                                    const expenses = parseFloat(totalExpenses()) || 0;
+
+                                    console.log("Debug - Income:", income, "Expenses:", expenses);
+
+                                    if (income <= 0) return "0%";
+                                    const rate = Math.round(((income - expenses) / income) * 100);
+                                    return isNaN(rate) ? "0%" : `${rate}%`;
+                                })()}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Most Active Category */}
+                    <div className="stats-item">
+                        <div className="values-inline">
+                            <h2>Most Used Category:</h2>
+                            <p>
+                                {[...incomes, ...expenses].length > 0
+                                    ? getMostFrequentCategory([...incomes, ...expenses]).charAt(0).toUpperCase() +
+                                    getMostFrequentCategory([...incomes, ...expenses]).slice(1)
+                                    : "None"}
                             </p>
                         </div>
                     </div>
@@ -110,6 +157,23 @@ const StatisticsStyled = styled.div`
             .values {
                 display: flex;
                 justify-content: space-between;
+
+                p {
+                    font-weight: 600;
+                    font-size: 1.6rem;
+                }
+            }
+
+            .values-inline {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+
+                h2 {
+                    margin-bottom: 0;
+                    font-size: 1.2rem;
+                }
 
                 p {
                     font-weight: 600;

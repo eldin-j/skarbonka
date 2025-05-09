@@ -7,7 +7,7 @@ import IncomeItem from '../components/IncomeItem';
 import ExpenseForm from '../components/ExpenseForm';
 
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses, formatMoney} = useGlobalContext()
 
     useEffect(() =>{
         getExpenses()
@@ -30,7 +30,7 @@ function Expenses() {
                                 id={_id} 
                                 title={title} 
                                 description={description} 
-                                amount={amount} 
+                                amount={formatMoney(amount)}
                                 date={date} 
                                 type={type}
                                 category={category} 
