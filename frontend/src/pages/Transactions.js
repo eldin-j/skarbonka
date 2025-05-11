@@ -23,19 +23,19 @@ function Transactions() {
                     <div className="total-balance">
                         <h2>Balance</h2>
                         <p>
-                            {dollar} {totalBalance()}
+                            <b>₸</b> {totalBalance()}
                         </p>
                     </div>
                     <div className="total-income">
                         <h2>Income</h2>
                         <p>
-                            {dollar} {totalIncome()}
+                            <b>₸</b> {totalIncome()}
                         </p>
                     </div>
                     <div className="total-expense">
                         <h2>Expense</h2>
                         <p>
-                            {dollar} {totalExpenses()}
+                            <b>₸</b> {totalExpenses()}
                         </p>
                     </div>
                 </div>

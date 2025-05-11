@@ -33,7 +33,7 @@ function Statistics() {
                     <div className="stats-item">
                         <div className="values-inline">
                             <h2>This Month's Total:</h2>
-                            <p>${formatMoney(totalBalance())}</p>
+                            <p><b>₸</b> {formatMoney(totalBalance())}</p>
                         </div>
                     </div>
 
@@ -50,8 +50,8 @@ function Statistics() {
                         <div className="values-inline">
                             <h2>Income Average:</h2>
                             <p>
-                                ${incomes.length > 0
-                                ? formatMoney(incomes.reduce((acc, curr) => acc + curr.amount, 0) / incomes.length)
+                                <b>₸</b> {incomes.length > 0
+                                ? formatMoney((incomes.reduce((acc, curr) => acc + curr.amount, 0) / incomes.length).toFixed(2))
                                 : 0}
                             </p>
                         </div>
@@ -60,8 +60,8 @@ function Statistics() {
                         <div className="values-inline">
                             <h2>Expense Average:</h2>
                             <p>
-                                ${expenses.length > 0
-                                ? formatMoney(expenses.reduce((acc, curr) => acc + curr.amount, 0) / expenses.length)
+                                <b>₸</b> {expenses.length > 0
+                                ? formatMoney((expenses.reduce((acc, curr) => acc + curr.amount, 0) / expenses.length).toFixed(2))
                                 : 0}
                             </p>
                         </div>
