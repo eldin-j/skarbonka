@@ -1,20 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
-import { dateFormat } from '../utils/dateFormat';
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../utils/Icons';
+import {dateFormat} from '../utils/dateFormat';
+import {
+    bitcoin,
+    book,
+    calender,
+    card, categories,
+    circle,
+    clothing,
+    comment,
+    food,
+    freelance,
+    medical,
+    money,
+    piggy,
+    stocks,
+    takeaway,
+    trash,
+    tv,
+    users,
+    yt
+} from '../utils/Icons';
 import Button from './Button';
 
-function IncomeItem({
-    id,
-    title,
-    amount,
-    date,
-    category,
-    description,
-    deleteItem,
-    indicatorColor,
-    type
-}) {
+function TransactionItem({
+                             id,
+                             title,
+                             amount,
+                             date,
+                             category,
+                             description,
+                             deleteItem,
+                             indicatorColor,
+                             type
+                         }) {
 
     const categoryIcon = () =>{
         switch(category) {
@@ -62,7 +81,12 @@ function IncomeItem({
         }
     }
 
-    console.log('type', type)
+    // Format category name for display
+    const formatCategory = (cat) => {
+        if (!cat) return '';
+        // Capitalize first letter
+        return cat.charAt(0).toUpperCase() + cat.slice(1);
+    };
 
     return (
         <IncomeItemStyled indicator={indicatorColor}>
@@ -75,13 +99,17 @@ function IncomeItem({
                     <div className="text">
                         <p><b>₸</b> {amount}</p>
                         <p>{calender} {dateFormat(date)}</p>
+                        <p className="category-text">
+                            {categories}
+                            {formatCategory(category)}
+                        </p>
                         <p>
                             {comment}
                             {description}
                         </p>
                     </div>
                     <div className="btn-con">
-                        <Button 
+                        <Button
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
@@ -101,7 +129,7 @@ function IncomeItem({
 const IncomeItemStyled = styled.div`
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -110,7 +138,8 @@ const IncomeItemStyled = styled.div`
     gap: 1rem;
     width: 100%;
     color: #222260;
-    .icon{
+
+    .icon {
         width: 80px;
         height: 80px;
         border-radius: 20px;
@@ -119,21 +148,24 @@ const IncomeItemStyled = styled.div`
         align-items: center;
         justify-content: center;
         border: 2px solid #FFFFFF;
-        i{
+
+        i {
             font-size: 2.6rem;
         }
     }
 
-    .content{
+    .content {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: .2rem;
-        h5{
+
+        h5 {
             font-size: 1.3rem;
             padding-left: 2rem;
             position: relative;
-            &::before{
+
+            &::before {
                 content: '';
                 position: absolute;
                 left: 0;
@@ -146,24 +178,32 @@ const IncomeItemStyled = styled.div`
             }
         }
 
-        .inner-content{
+        .inner-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .text{
+
+            .text {
                 display: flex;
                 align-items: center;
                 gap: 1.5rem;
-                p{
+
+                p {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
                     color: var(--primary-color);
                     opacity: 0.8;
                 }
+
+                .category-text {
+                    .category-label {
+                        font-weight: 600;
+                    }
+                }
             }
         }
     }
 `;
 
-export default IncomeItem
+export default TransactionItem

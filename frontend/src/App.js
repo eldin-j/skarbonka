@@ -2,7 +2,7 @@ import React, {useState, useMemo} from 'react'
 import styled from "styled-components";
 import bg from './img/bg.png'
 import {MainLayout} from './styles/Layouts'
-import Navigation from './components/Navigation'
+import Navbar from './components/Navbar'
 import Statistics from './pages/Statistics';
 import Transactions from './pages/Transactions';
 import Incomes from './pages/Incomes'
@@ -34,7 +34,7 @@ function App() {
   return (
     <AppStyled bg={bg} className="App">
       <MainLayout>
-        <Navigation active={active} setActive={setActive} />
+        <Navbar active={active} setActive={setActive} />
         <main>
           {displayData()}
         </main>

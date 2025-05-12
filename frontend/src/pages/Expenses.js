@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../context/globalContext';
 import { InnerLayout } from '../styles/Layouts';
-import Form from '../components/Form';
-import IncomeItem from '../components/IncomeItem';
-import ExpenseForm from '../components/ExpenseForm';
+import TransactionForm from '../components/TransactionForm';
+import TransactionItem from '../components/TransactionItem';
 
 function Expenses() {
     const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses, formatMoney} = useGlobalContext()
@@ -16,16 +15,16 @@ function Expenses() {
         <ExpenseStyled>
             <InnerLayout>
                 <h1>Expenses</h1>
-                <h2 className="total-expense">Expense: <span><b>₸</b> {totalExpenses()}</span></h2>
+                <h2 className="total-expense"><span><b>₸</b> {totalExpenses()}</span></h2>
                 <div className="income-content">
                     <div className="form-container">
-                        <ExpenseForm />
+                        <TransactionForm type="expense" />
                     </div>
                     <div className="incomes">
                         {expenses.map((income) => {
                             const {_id, title, amount, date, category, description, type} = income;
                             console.log(income)
-                            return <IncomeItem
+                            return <TransactionItem
                                 key={_id}
                                 id={_id} 
                                 title={title} 
